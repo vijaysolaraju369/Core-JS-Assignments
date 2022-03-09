@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+        }
+        section {
+            padding: 20px 100px;
+        }
+        section>h1 {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .top-container>h1 {
+            color: rgb(21, 2, 133);
+            font-size: 25px;
+            font-weight: 800;
+            margin-inline: 0;
+        }
+        .top-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .top-container > button {
+            border: none;
+            background-color: blueviolet;
+            color: white;
+            padding: 10px 20px;
+        }
+        .top-container > div>  input {
+            width: auto;
+        }
+        hr {
+            margin-bottom: 20px;
+        }
+        .todo-container{
+            padding: 30px;
+        }
+        .todo-container > div {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-size: 18px;
+            width: 100%;
+            margin: 20px;
+        }
+        button {
+            border: none;
+            background-color: blueviolet;
+            color: white;
+            padding: 5px 20px;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h1>Todo Application</h1>
+        <div>
+            <div class="top-container">
+                <h1>My Tasks</h1>
+                <div>
+                    <input type="text" id="taskName">
+                    <button onclick="createTask()">Add Task</button>
+                </div>
+            </div>
+            <hr>
+            <div class="todo-container" id="taskContainer"></div>
+        </div>
+    </section>
+    <script>
+        let taskEl=document.getElementById("taskContainer");
+        let userInputEl=document.getElementById("taskName");
+        let count=0
+        let containerId="task"
+        function createTask() {
+            count+=1;
+            let uniqueId=containerId+count;
+            let taskContainerEl=document.createElement("div");
+            taskContainerEl.setAttribute("id",uniqueId);
+            taskEl.appendChild(taskContainerEl);
+
+            let checkboxEl=document.createElement("input");
+            let checkBoxId="input"+count;
+            checkboxEl.setAttribute("id",checkBoxId);
+            checkboxEl.setAttribute("type","checkbox");
+            taskContainerEl.appendChild(checkboxEl);
+
+            let paraEl=document.createElement("p");
+            let inputValue=userInputEl.value;
+            paraEl.id="para"+count;
+            paraEl.innerHTML=inputValue;
+            taskContainerEl.appendChild(paraEl);
+
+            let inputEl=document.createElement("input");
+            inputEl.id="input2"+count;
+            taskContainerEl.appendChild(inputEl);
+            inputEl.style.display="none";
+
+            let buttonEl=document.createElement("button");
+            buttonEl.setAttribute("onclick","deleteTask(this.parentNode)");
+            buttonEl.innerHTML="Delete";
+            taskContainerEl.appendChild(buttonEl);
+
+            let editEl=document.createElement("button");
+            editEl.id="Edit"+count;
+            editEl.setAttribute("onclick","edit(count,this.parentNode)");
+            editEl.innerHTML="Edit";
+            taskContainerEl.appendChild(editEl);
+
+            let saveEl=document.createElement("button");
+            saveEl.innerHTML="Save";
+            saveEl.id="save"+count;
+            taskContainerEl.appendChild(saveEl);
+            saveEl.setAttribute("onclick","save(count)");
+            saveEl.style.display="none";
+        }
+        function deleteTask(delCont) {
+            taskEl.removeChild(delCont);            
+        }
+        function edit(count) {
+            let delContainer=document.getElementById("task"+count);
+            let a="para"+count;
+            let editContainer=document.getElementById(a);
+            let editVal=editContainer.innerHTML;
+            editContainer.style.display="none";
+            
+            let inputContEl=document.getElementById("input2"+count);
+            inputContEl.style.display="block";
+            inputContEl.value=editVal;
+
+            let saveeEl=document.getElementById("save"+count);
+            saveeEl.style.display="block";
+
+        }
+        function save(count) {
+            let saveBtnEl=document.getElementById("save"+count);
+            let inputEll=document.getElementById("input2"+count);
+            let inputVaal=inputEll.value;
+            inputEll.style.display="none";
+            saveBtnEl.style.display="none";
+            
+            let paraaEl=document.getElementById("para"+count);
+            paraaEl.innerHTML=inputVaal;
+            paraaEl.style.display="block";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-cont {
+            background-color: wheat;
+            border: 2px solid burlywood;
+            padding: 30px;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .loign-info>label {
+            display: block;
+        }
+
+        .loign-info>input {
+            padding: 5px 10px;
+            font-size: 18px;
+            font-weight: normal;
+            margin-top: 20px;
+        }
+
+        p {
+            color: red;
+            font-size: 15px;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            color: white;
+            background-color: brown;
+            border: none;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <h1>Login</h1>
+            <div class="login-cont">
+                <div class="loign-info">
+                    <label for="email">Email :</label>
+                    <input type="email" id="email"><br>
+                    <p id="mailError"></p>
+                    <label for="password">Password :</label>
+                    <input type="password" id="password" ><br>
+                    <p id="passError"></p>
+                </div>
+                <button id="button" onclick="verify()">Login</button>
+            </div>
+            <div>
+                <h1>Default Users</h1>
+                <h4>
+                    vijay@gmail.com : hi@12345
+                </h4>
+                <h4>
+                    hi@gmail.com : vijay@12345
+                </h4>
+            </div>
+        </div>
+        
+    </div>
+    <script>
+        let users = {
+            "vijay@gmail.com": "hi@12345",
+            "hi@gmail.com": "vijay@12345"
+        }
+        function verify() {
+            let mailErrorMsg = document.getElementById("mailError");
+            let passErrorMsg = document.getElementById("passError");
+            let emailEl = document.getElementById("email");
+            let passwordEl = document.getElementById("password");
+            let emailId = emailEl.value;
+            let passwordValue = passwordEl.value;
+            let emailbool=false;
+            let passbool=false;
+            mailErrorMsg.innerHTML="";
+            passErrorMsg.innerHTML="";
+            if (emailId=="" && passwordValue=="") {
+                mailErrorMsg.innerHTML="Please enter mail id";
+                passErrorMsg.innerHTML="Please enter password";
+            }
+            else {
+                if (emailId=="") {
+                    mailErrorMsg.innerHTML="Please enter mail id";
+                }
+                else {
+                    emailbool=true;
+                }
+                if (passwordValue=="") {
+                    passErrorMsg.innerHTML="Please enter password";
+                }
+                else {
+                    passErrorMsg.innerHTML="Please enter password";
+                    passbool=true;
+                }
+                if (emailbool && passbool) {
+                    if (emailId in users) {
+                        mailErrorMsg.innerHTML="";
+                        if (passwordValue.length>=8 && passwordValue.length<=24) {
+                            if (users[emailId] == passwordValue) {
+                                passErrorMsg.innerHTML="";
+                                alert("Logged in successfully");
+                            }
+                            else {
+                                passErrorMsg.innerHTML = "incorrect password";
+                            }
+                        }
+                        else {
+                            passErrorMsg.innerHTML = "Enter valid password";
+                        }
+                    }
+                    else {
+                            mailErrorMsg.innerHTML="user not found"
+                    }
+                    
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

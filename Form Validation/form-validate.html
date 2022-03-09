@@ -1,0 +1,120 @@
+<!DOCTYPE html><!-- dtd path : document type definition-->
+<html>
+    <head>
+        <title>Demo</title>
+        <meta charset="UTF-8">
+        <meta name="keywords"  content=" put imp words from ur webpage">
+        <meta name="author" content="put name of author"> 
+        <meta name="description" content="put short desc">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            .error {
+                color: red;
+                font-weight: 500;
+                font-size: 15px;
+            }
+            form {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+            table {
+                color: rgb(27, 2, 85);
+                font-weight: 800;
+                font-size: 20px;
+                border: 2px solid black;
+                background: mintcream;
+                padding: 57px;
+            }
+        </style>
+    </head>
+    <body>
+        <form >
+            <table>
+                <tr>
+                    <td>
+                        <label for="fname">Firstname:</label>
+                    </td>
+                    <td>
+                        <input type="text" id="fname" value="" name="myname" onblur="validate1()" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td id="error1" class="error"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="lname">Lastname:</label>
+                    </td>
+                    <td>
+                        <input type="text" id="lname" placeholder="" name="myname" onblur="validate2()" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td id="error2" class="error"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="uname">Username:</label>
+                    </td>
+                    <td>
+                        <input type="text" id="uname" name="uname"  onblur="validate3()" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td id="error3" class="error"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="pass">Password:</label>
+                    </td>
+                    <td>
+                        <input type="password" id="pass" name="pass" pattern="(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{5,10}"
+                        onblur="validate4()"  required>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td id="error4" class="error"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="email">Email:</label>
+                    </td>
+                    <td>
+                        <input type="email" id="email" name="email" onblur="validate6()" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td id="error6" class="error"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="mobile">Mobile Number:</label>
+                    </td>
+                    <td>
+                        <input type="text" id="mobile" name="mobile" minlength="10" maxlength="10" pattern="[0-9]*" onblur="validate7()" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td id="error7" class="error"></td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <input type="submit" value="Submit">
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <hr>
+        <script src="formValidate.js"></script>
+    </body>
+</html>

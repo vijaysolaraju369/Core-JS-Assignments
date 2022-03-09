@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Data</title>
+
+    <style>
+        tr {
+            text-align: center;
+        }
+        td {
+            border: 10px;
+        }
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h2>User Data</h2>
+    <button onclick="fetchData()">Get User Data</button>
+    <div>
+        <table id="userData">
+            <tr >
+                <th>S.no</th>
+                <th>Name</th>
+                <th>Email ID</th>
+                <th>Username</th>
+                <th>Phone Number</th>
+                <th>Website URL</th>
+            </tr>
+        </table>
+    </div>
+    <script>
+        let userDataCont=document.getElementById("userData")
+        function fetchData(){
+            URL="https://jsonplaceholder.typicode.com/users"
+            fetch(URL)
+            .then(res=>res.json())
+            .then(data=>{
+                for(let each of data){
+                    sNum=each.id;
+                    name=each.name;
+                    emailId=each.email;
+                    userName=each.username;
+                    phoneNum=each.phone;
+                    webUrl=each.website;
+                    let columnCont=document.createElement("tr");
+                    let colCount=document.createElement("td");
+                    colCount.textContent=sNum;
+                    columnCont.appendChild(colCount);
+
+                    let nameCont=document.createElement("td");
+                    nameCont.textContent=name;
+                    columnCont.appendChild(nameCont);
+
+                    let emailCont=document.createElement("td");
+                    emailCont.textContent=emailId;
+                    columnCont.appendChild(emailCont);
+
+                    let usernameCont=document.createElement("td");
+                    usernameCont.textContent=userName;
+                    columnCont.appendChild(usernameCont);
+
+                    let phoneCont=document.createElement("td");
+                    phoneCont.textContent=phoneNum;
+                    columnCont.appendChild(phoneCont);
+
+                    let urlCont=document.createElement("td");
+                    urlCont.textContent=webUrl;
+                    columnCont.appendChild(urlCont);
+                    
+                    userDataCont.append(columnCont);
+                }
+            })
+        }
+    </script>
+</body>
+</html>

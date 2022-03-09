@@ -1,0 +1,83 @@
+<!DOCTYPE html><!-- dtd path : document type definition-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="keywords"  content=" put imp words from ur webpage">
+        <meta name="author" content="put name of author"> 
+        <meta name="description" content="put short desc">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            img {
+                height: 500px;
+                width: 700px;
+            }
+            .home-slider {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+            }
+            .mySlides>p {
+                position: absolute;
+                top: 0%;
+                left: 25%;
+                color: white;
+                font-size: 20px;
+                font-weight: 900;
+            }
+            div {
+                display: none;
+            }
+            #slide1 {
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <section class="home-slider1">
+            <section class="home-slider" >
+                <div class="mySlides" id="slide1">
+                    <p class="slide-count">1/5</p>
+                    <img src="pexels-chan-walrus-958545.jpg" class="slides-img">
+                </div>
+                
+                <div class="mySlides" id="slide2">
+                    <p class="slide-count">2/5</p>
+                    <img src="pexels-cottonbro-4255386.jpg" class="slides-img">                    
+                </div>
+                
+                <div class="mySlides" id="slide3">
+                    <p class="slide-count">3/5</p>
+                    <img src="pexels-cottonbro-4255412.jpg" class="slides-img">                    
+                </div>
+
+                <div class="mySlides" id="slide4">
+                    <p class="slide-count">4/5</p>
+                    <img src="pexels-david-garrison-5922447.jpg" class="slides-img">                    
+                </div>
+
+                <div class="mySlides" id="slide5">
+                    <p class="slide-count">5/5</p>
+                    <img src="pexels-elevate-1267320.jpg" class="slides-img">                    
+                </div>
+            </section>
+        </section>
+
+        <script>
+            count=1;
+            let currentSlide="";
+            let nextSlide="";
+            function slider() {
+                currentSlide="slide"+count;
+                document.getElementById(currentSlide).style.display="none";
+                count++;
+                if (nextSlide=="slide5") {
+                    count=1;
+                }
+                nextSlide="slide"+count;
+                console.log(nextSlide);
+                document.getElementById(nextSlide).style.display="block";
+            }
+            setInterval(slider,3000);
+        </script>
+    </body>
+</html>
